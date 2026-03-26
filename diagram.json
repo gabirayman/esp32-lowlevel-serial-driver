@@ -3,11 +3,30 @@
   "author": "Gabi Rayman",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} }
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 120,
+      "left": 153.05,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 37.2,
+      "left": 179.4,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    }
   ],
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
-    [ "esp:RX", "$serialMonitor:TX", "", [] ]
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:2", "r1:2", "green", [ "h0" ] ],
+    [ "r1:1", "led1:A", "green", [ "h0" ] ],
+    [ "led1:C", "esp:GND.2", "green", [ "h0", "v-9.2" ] ]
   ],
   "dependencies": {}
 }
